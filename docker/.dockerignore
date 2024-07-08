@@ -1,0 +1,9 @@
+vps-projet-intern/node_modules
+vps-projet-intern/vendor
+vps-projet-intern/*.log
+vps-projet-intern/*.tmp
+vps-projet-intern/.git
+vps-projet-intern/.dockerignore
+vps-projet-intern/docker-compose.yml
+vps-projet-intern/public/storage
+vps-projet-intern/storage

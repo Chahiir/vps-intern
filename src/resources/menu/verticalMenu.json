@@ -1,0 +1,109 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Accueil",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "home"
+    },
+    {
+      "url" : "/salaries",
+      "name": "Salaries",
+      "icon": "menu-icon tf-icons bx bx-layout",
+      "slug": "salaries-menu"
+
+    },
+    {
+      "url" : "/partenaires",
+      "name": "Partenaires",
+      "icon": "menu-icon tf-icons bx bx-layout",
+      "slug": "salaries-menu"
+
+    },
+    {
+      "name": "Visits",
+      "icon": "menu-icon tf-icons bx bx-store",
+      "slug": "Visits-menu",
+      "submenu": [
+        {
+          "url": "/visiteurs",
+          "name": "Visiteurs",
+          "slug": "partenaires"
+        },
+        {
+          "url": "/partenaireVisits",
+          "name": "Visites des Partenaires",
+          "slug": "partenaireVisits"
+        }
+      ]
+    },
+    {
+      "url" : "/addVisit",
+      "name": "Nouvelle Visit",
+      "icon": "menu-icon tf-icons bx bxl-php",
+      "slug": "visiteurs"
+    },
+    {
+      "name": "Badges",
+      "icon": "menu-icon tf-icons bx bx-layout",
+      "slug": "Badges-menu",
+      "submenu": [
+        {
+          "url": "/badges",
+          "name": "Liste des Badges",
+          "slug": "badges"
+        },
+        {
+          "url": "/affecteBadge",
+          "name": "Affecter un Badge",
+          "slug": "affecteBadge"
+        }
+      ]
+    },
+    {
+      "name": "User Management",
+      "icon": "menu-icon tf-icons bx bx-cog",
+      "slug": "userManagement-menu",
+      "submenu": [
+        {
+          "url": "/users",
+          "name": "Utilisateur",
+          "slug": "users"
+        },
+        {
+          "url": "/roles",
+          "name": "Roles",
+          "slug": "roles"
+        },
+        {
+          "url": "/permissions",
+          "name": "Permissions",
+          "slug": "permissions"
+        }
+      ]
+    },
+    {
+      "name": "Paramétrages",
+      "icon": "menu-icon tf-icons bx bx-cog",
+      "slug": "salaries-menu",
+      "submenu": [
+        {
+          "url": "/badgeTypes",
+          "name": "Type de Badges",
+          "slug": "badgeTypes"
+        },
+        {
+          "url": "/contratTypes",
+          "name": "Type de Contrats",
+          "slug": "contratTypes"
+        }
+      ]
+    },
+    {
+      "url" : "/export",
+      "name": "Rapports",
+      "icon": "menu-icon tf-icons bx bxs-file-export",
+      "slug": "export"
+    }
+  ]
+}
