@@ -8,21 +8,31 @@
             <div class="modal-body">
                 <div class="col-xxl">
                     <div class="container">
-                        <form action="{{ route('roles.store') }}" method="POST">
+                        <div class="card-header d-flex align-items-center justify-content-between position-relative ">
+                            <h3 class="mb-8 position-absolute top-100 start-50 translate-middle">Ajouter un Role</h3>
+                        </div>
+                        <form action="/add-role" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for="name">Role Name</label>
-                                <input type="text" name="name" id="name" class="form-control">
+                                <label for="name">Nom du Role</label>
+                                <input required placeholder="Nom" type="text" name="name" id="name" class="form-control">
                             </div>
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                             <div class="form-group">
                                 <label for="permissions">Permissions</label>
-                                <select name="permissions[]" id="permissions" class="form-control" multiple>
+                                <select name="permissions[]" id="permissions" class="select2 form-control"
+                                    multiple="multiple">
                                     @foreach ($permissions as $permission)
                                         <option value="{{ $permission->id }}">{{ $permission->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Create Role</button>
+                            @error('permissions')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            <button type="submit" class="btn btn-primary float-end mt-4">Create Role</button>
                         </form>
                     </div>
                 </div>

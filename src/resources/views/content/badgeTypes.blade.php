@@ -2,30 +2,24 @@
 
 @section('title', 'Badge Types ')
 
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}">
-@endsection
 
-@section('vendor-script')
-    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-@endsection
-
-@section('page-script')
-    <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
-@endsection
 
 
 
 @section('content')
-
-    <button type="button" class="btn btn-primary col-3 mb-4 float-end" data-bs-toggle="modal" data-bs-target="#ajouter">
+    @can('add-type-badge')
+    <button type="button" class="btn btn-primary col-3 mb-4 float-start" data-bs-toggle="modal" data-bs-target="#ajouter">
         Ajouter un type de Badge
     </button>
+    @endcan
     <br><br><br>
     <div class="card">
 
-        <h5 class="card-header">Liste des types de Badge</h5>
-
+        <div class="card-header d-flex align-items-center justify-content-between position-relative ">
+            <h3 class="mb-8 position-absolute top-100 start-50 translate-middle">Liste des types de badges</h3>
+        </div>
+        <br>
+        @can('add-type-badge')
         <div class="modal fade" id="ajouter" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -36,25 +30,28 @@
                     <div class="modal-body">
                         <div class="col-xxl">
                             <div class="card mb-4">
-                                <div class="card-header d-flex align-items-center justify-content-between">
-                                    <h5 class="mb-0">Ajouter un type badge</h5>
+                                <div
+                                    class="card-header d-flex align-items-center justify-content-between position-relative ">
+                                    <h3 class="mb-8 position-absolute top-100 start-50 translate-middle">Ajouter un type
+                                    </h3>
                                 </div>
+                                <br>
                                 <div class="card-body">
-                                    <form method="POST" action="/addBadgeType">
+                                    <form method="POST" action="/add-badge-type">
                                         @csrf
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label" for="basic-default-name">Nom de
                                                 type</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="basic-default-name"
-                                                    placeholder="Nom" name="name" />
+                                                    placeholder="Nom" name="name" required/>
                                             </div>
                                         </div>
 
 
                                         <div class="row justify-content-end">
                                             <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                                                <button type="submit" class="btn btn-primary float-end">Ajouter</button>
                                             </div>
                                         </div>
                                     </form>
@@ -66,6 +63,7 @@
                 </div>
             </div>
         </div>
+        @endcan
         <div class="table-responsive text-nowrap">
             <table class="table table-striped">
                 <thead>
@@ -78,25 +76,30 @@
 
                     @foreach ($types as $type)
                         <tr>
-                            <td> <span class="fw-medium">{{ $type->name }}</span></td>
+                            <td> <span class="fw-medium">{{ \App\Helpers\SalarierHelper::firstMaj($type->name) }}</span></td>
 
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                         data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                     <div class="dropdown-menu">
+                                      @can('edit-type-badge')
                                         <a class="dropdown-item" data-bs-toggle="modal"
                                             data-bs-target="#modifier-{{ $type->id }}"><i
                                                 class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <form action="/deleteBadgeType/{{ $type->id }}" method="POST">
+                                                @endcan
+                                                @can('delete-type-badge')
+                                        <form action="/delete-badge-type/{{ $type->id }}" method="POST" class="delete-form">
                                             @csrf
                                             @method('DELETE')
                                             <button class="dropdown-item" type="submit"><i class="bx bx-trash me-1"></i>
                                                 Delete</button>
                                         </form>
+                                        @endcan
                                     </div>
                                 </div>
                             </td>
+                            @can('edit-type-badge')
                             <div class="modal fade" id="modifier-{{ $type->id }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -110,19 +113,22 @@
                                             <div class="col-xxl">
                                                 <div class="card mb-4">
                                                     <div
-                                                        class="card-header d-flex align-items-center justify-content-between">
-                                                        <h5 class="mb-0">Modifier le type de badge</h5>
+                                                        class="card-header d-flex align-items-center justify-content-between position-relative ">
+                                                        <h3
+                                                            class="mb-8 position-absolute top-100 start-50 translate-middle">
+                                                            Modifier le type</h3>
                                                     </div>
+                                                    <br>
                                                     <div class="card-body">
-                                                        <form method="POST" action="editBadgeType/{{ $type->id }}">
+                                                        <form method="POST" action="edit-badge-type/{{ $type->id }}">
                                                             @csrf
                                                             <div class="row mb-3">
                                                                 <label class="col-sm-2 col-form-label"
-                                                                    for="basic-default-name">Nom du badge</label>
+                                                                    for="basic-default-name">Nom du Type <br> badge</label>
                                                                 <div class="col-sm-10">
                                                                     <input type="text" class="form-control"
-                                                                        id="basic-default-name" placeholder="XX-00"
-                                                                        name="name" value={{ $type->name }} />
+                                                                        id="basic-default-name" placeholder="Nom"
+                                                                        name="name" value="{{ $type->name }}" required/>
                                                                 </div>
                                                             </div>
 
@@ -130,7 +136,7 @@
                                                             <div class="row justify-content-end">
                                                                 <div class="col-sm-10">
                                                                     <button type="submit"
-                                                                        class="btn btn-primary">Modifier</button>
+                                                                        class="btn btn-primary float-end">Modifier</button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -142,7 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

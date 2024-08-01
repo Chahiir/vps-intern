@@ -15,17 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('cin');
+            $table->string('cin')->unique();
             $table->string('adresse');
             $table->string('cnss')->nullable();
             $table->string('situation_familiale');
             $table->date('date_naissance');
-            $table->unsignedBigInteger('contrat_type');
+            $table->unsignedBigInteger('contrat_type')->nullable();
             $table->date('date_debut');
             $table->date('date_fin')->nullable();
             $table->timestamps();
 
-            $table->foreign('contrat_type')->references('id')->on('contrat_types');
+            $table->foreign('contrat_type')->references('id')->on('contrat_types')->onDelete('set null')->onUpdate('cascade');
 
         });
     }

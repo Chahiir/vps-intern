@@ -2,39 +2,28 @@
 
 @section('title', 'Partenaire Visits')
 
-@section('vendor-style')
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/mine.css') }}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
-@endsection
-
-@section('vendor-script')
-    <script src="{{ asset('assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-@endsection
-
-@section('page-script')
-    <script src="{{ asset('assets/js/dashboards-analytics.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('assets/vendor/libs/mine.js') }}"></script>
-@endsection
 
 @section('content')
 
 
-    <button class="btn btn-primary me-1 float-end" type="button" data-bs-toggle="collapse" data-bs-target="#data-table_filter" aria-expanded="false" aria-controls="data-table_filter">
-      <i class="bx bx-filter-alt me-1"></i>
+    <button class="btn btn-primary me-1 float-end" type="button" data-bs-toggle="collapse" data-bs-target="#data-table_filter"
+        aria-expanded="false" aria-controls="data-table_filter">
+        <i class='bx bx-search-alt-2'></i>
     </button>
     <div class="btn-group me-3 float-end">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonIcon" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="bx bxs-download me-1"></i> Exporter
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonIcon">
-        <li><button class="dropdown-item d-flex align-items-center" onclick="printTable()"><i class="bx bx-printer scaleX-n1-rtl"></i> Imprimer</button></li>
-        <li><button class="dropdown-item d-flex align-items-center" onclick="downloadCSV('partenaireVisits')"><i class="bx bx-download scaleX-n1-rtl"></i> CSV</button></li>
-        <li><button class="dropdown-item d-flex align-items-center" onclick="downloadExcel('partenaireVisits')"><i class="bx bx-download scaleX-n1-rtl"></i> Excel</button></li>
-      </ul>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonIcon" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="bx bxs-download me-1"></i> Exporter
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonIcon">
+            <li><button class="dropdown-item d-flex align-items-center" onclick="printTable()"><i
+                        class="bx bx-printer scaleX-n1-rtl"></i> Imprimer</button></li>
+            <li><button class="dropdown-item d-flex align-items-center" onclick="downloadCSV('partenaireVisits')"><i
+                        class="bx bx-download scaleX-n1-rtl"></i> CSV</button></li>
+            <li><button class="dropdown-item d-flex align-items-center" onclick="downloadExcel('partenaireVisits')"><i
+                        class="bx bx-download scaleX-n1-rtl"></i> Excel</button></li>
+        </ul>
     </div>
     <br>
     <br><br>
@@ -43,8 +32,11 @@
 
 
         <div class="table-responsive text-nowrap"id="print-section">
-          <img src="{{ asset('assets/img/print/Picture1.jpg') }}" style="display:none;margin:auto;" class="print-header"><br>
-          <h5 class="card-header">Liste des Visits Partenaire</h5>
+            <img src="{{ asset('assets/img/print/Picture1.jpg') }}" style="display:none;margin:auto;"
+                class="print-header"><br>
+            <div class="card-header d-flex align-items-center justify-content-between position-relative ">
+                <h3 class="mb-8 position-absolute top-100 start-50 translate-middle">Liste des visits Partenaires</h3>
+            </div>
 
             <table class="table table-striped" id="data-table">
                 <thead>
@@ -55,6 +47,8 @@
                         <th>Entreprise</th>
                         <th>Motif de visite</th>
                         <th>Badge</th>
+                        <th>Entrer</th>
+                        <th>Sortie</th>
                         <th>Statut</th>
                         <th class="action">Action</th>
 
@@ -65,46 +59,57 @@
                     @foreach ($visiteurs as $visiteur)
                         <tr>
 
-                            <td> <span class="fw-medium">{{ $visiteur->partenaire->nom }}&nbsp;{{ $visiteur->partenaire->prenom }}</span></td>
-                            <td>{{ \App\Helpers\SalarierHelper::formatCin($visiteur->partenaire->cin) }}</td>
-                            <td>{{ $visiteur->partenaire->entreprise }}</td>
+                            <td> <span
+                                    class="fw-medium">{{ \App\Helpers\SalarierHelper::toMaj($visiteur->partenaire->nom) }}&nbsp;{{ \App\Helpers\SalarierHelper::firstMaj($visiteur->partenaire->prenom) }}</span>
+                            </td>
+                            <td>{{ \App\Helpers\SalarierHelper::toMaj($visiteur->partenaire->cin) }}</td>
+                            <td>{{ \App\Helpers\SalarierHelper::toMaj($visiteur->partenaire->entreprise) }}</td>
                             <td>{{ $visiteur->motif }}</td>
-                            <td>{{ $visiteur->badge->reference }}</td>
-                            @if($visiteur->sortie)
-                              <td><span class="badge bg-label-success"> Sorti </span></td>
+                            <td>{{ \App\Helpers\SalarierHelper::toMaj($visiteur->badge->reference) }}</td>
+                            <td>{{ $visiteur->entrer }}</td>
+                            <td>{{ $visiteur->sortie }}</td>
+                            @if ($visiteur->sortie)
+                                <td><span class="badge bg-label-success"> Sorti </span></td>
                             @else
-                            <td><span class="badge bg-label-warning"> dans le bureau </span></td>
+                                <td><span class="badge bg-label-warning"> dans le bureau </span></td>
                             @endif
                             <td class="action">
-                              <div class="dropdown">
-                                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                      data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-                                  <div class="dropdown-menu">
-                                    @if(!isset($visiteur->sortie))
-                                      <form action="/retourBadgePartenaire/{{ $visiteur->id }}" method="POST">
-                                        @csrf
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                    <div class="dropdown-menu">
+                                      @can('retour-badge')
+                                        @if (!isset($visiteur->sortie))
+                                            <form action="/retour-badge-partenaire/{{ $visiteur->id }}" method="POST">
+                                                @csrf
 
-                                        <button class="dropdown-item" type="submit"><i class="bx bx-lock-alt me-1"></i>
-                                            Retour</button>
-                                      </form>
-                                    @endif
-                                      <a class="dropdown-item" data-bs-toggle="modal"
-                                          data-bs-target="#modifier-{{ $visiteur->id }}"><i
-                                              class="bx bx-edit-alt me-1"></i> Edit</a>
-                                      <form action="/deletePartenaireVisit/{{ $visiteur->id }}" method="POST">
-                                          @csrf
-                                          @method('DELETE')
-                                          <button class="dropdown-item" type="submit"><i class="bx bx-trash me-1"></i>
-                                              Delete</button>
-                                      </form>
-                                  </div>
-                              </div>
-                          </td>
+                                                <button class="dropdown-item" type="submit"><i
+                                                        class="bx bx-lock-alt me-1"></i>
+                                                    Retour</button>
+                                            </form>
+                                        @endif
+                                        @endcan
+                                        @can('edit-visit-partenaire')
+                                        <a class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#modifier-{{ $visiteur->id }}"><i
+                                                class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                @endcan
+                                                @can('delete-visit-partenaire')
+                                        <form action="/delete-partenaire-visit/{{ $visiteur->id }}" method="POST" class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="dropdown-item" type="submit"><i class="bx bx-trash me-1"></i>
+                                                Delete</button>
+                                        </form>
+                                        @endcan
+                                    </div>
+                                </div>
+                            </td>
 
 
-
-                          @include('content.modals.editPartenaireVisit', ['visiteur' => $visiteur])
-
+                            @can('edit-visit-partenaire')
+                            @include('content.modals.editPartenaireVisit', ['visiteur' => $visiteur])
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

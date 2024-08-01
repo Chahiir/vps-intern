@@ -32,14 +32,14 @@ $navbarDetached = ($navbarDetached ?? '');
       @endif
 
       <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-        @yield('title') 
+        @yield('title')
         <ul class="navbar-nav flex-row align-items-center ms-auto">
 
           <!-- User -->
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <div class="avatar avatar-online">
-                <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                <img src='{{ Storage::url(session('photo_profile')) }}' alt class="w-px-40 h-auto rounded-circle">
               </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -48,12 +48,12 @@ $navbarDetached = ($navbarDetached ?? '');
                   <div class="d-flex">
                     <div class="flex-shrink-0 me-3">
                       <div class="avatar avatar-online">
-                        <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                        <img src='{{ Storage::url(session('photo_profile')) }}' alt class="w-px-40 h-auto rounded-circle">
                       </div>
                     </div>
                     <div class="flex-grow-1">
-                      <span class="fw-medium d-block"> {{ Auth::user()->name }}</span>
-                      <small class="text-muted"> <!-- {{ Auth::user()->role }} --></small>
+                      <span class="fw-medium d-block"> {{ Auth::user()->salarier->nom }}</span>
+                      <small class="text-muted">  {{ Auth::user()->role->name }} </small>
                     </div>
                   </div>
                 </a>
@@ -62,7 +62,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="dropdown-divider"></div>
               </li>
               <li>
-                <a class="dropdown-item" href="javascript:void(0);">
+                <a class="dropdown-item" href="/profile">
                   <i class="bx bx-user me-2"></i>
                   <span class="align-middle">My Profile</span>
                 </a>

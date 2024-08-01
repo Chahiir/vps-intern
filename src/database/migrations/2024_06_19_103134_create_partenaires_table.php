@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('cin');
+            $table->string('cin')->unique();
             $table->string('entreprise');
             $table->timestamps();
         });

@@ -28,4 +28,12 @@ class RoleRequest extends FormRequest
             'permissions' => 'required | array'
         ];
     }
+
+    public function messages(){
+      return [
+        'name' => 'le nom est obligatoire.',
+        'name.unique' => 'le nom de role doit etre unique',
+        'permissions' => 'les permissions sont requise'
+      ];
+    }
 }

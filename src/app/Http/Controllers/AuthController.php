@@ -66,8 +66,11 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             $user = Auth::user();
+            User::where('id',Auth::id())->update(['last_loggin'=>now()]);
             $tokenResult = $user->createToken('Personal Access Token');
             $token = $tokenResult->token;
+            $documents = $user->salarier->documents->find(8)->pivot->file_path ?? 'profile-photos/avatar.png';
+            session()->put(['photo_profile'=> $documents ]);
 
             if ($request->remember) {
                 $token->expires_at = Carbon::now()->addWeeks(1);
@@ -79,8 +82,8 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-          'email' => 'The provided credentials do not match our records.',
-      ]);
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
     /**

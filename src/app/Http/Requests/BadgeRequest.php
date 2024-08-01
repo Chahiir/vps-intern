@@ -27,4 +27,11 @@ class BadgeRequest extends FormRequest
             'type_id' => 'integer|required'
         ];
     }
+
+    public function messages(){
+      return [
+        'reference' => 'La reference du badge est obligatoire.',
+        'type_id' => 'le type de badge est obligatoire'
+      ];
+    }
 }

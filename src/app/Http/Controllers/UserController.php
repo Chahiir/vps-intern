@@ -3,27 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Log;
 use App\Models\Role;
+use App\Models\Salarier;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::whereNotNull('id')->get();
+      $this->authorize('users');
+        $users = User::whereNotNull('id')->with('salarier')->get();
         $roles = Role::whereNotNull('id')->get();
+        $salariers = Salarier::whereNotNull('id')->get();
 
-        return view('content.users', compact('users', 'roles'));
+        return view('content.users', compact('users', 'roles', 'salariers'));
     }
 
     public function store(UserRequest $request)
     {
-        $validated = $request->validated();
-        $validated['password'] = bcrypt($validated['password']);
-        User::create($validated);
+      $this->authorize('add-user');
+        try {
+            $validated = $request->validated();
+            $validated['password'] = bcrypt($validated['password']);
+            User::create($validated);
 
-        return redirect()->route('users.index')->with('success', 'User Created successfully.');
+            return redirect()->back()->with('success', 'L\'Utilisateur est bien ajouter.');
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error($e);
+
+            return redirect()->back()->with('error', 'Un Problem est survenue: '.$e->getMessage());
+        }
     }
 
     // public function update(Request $request, $id)
@@ -48,12 +60,52 @@ class UserController extends Controller
     //     return redirect()->route('users.index')->with('success', 'User Updated successfully.');
     // }
 
-    public function destroy( $id)
+    public function destroy($id)
     {
+      $this->authorize('delete-user');
+        try {
+            User::find($id)->delete();
 
-        User::find($id)->delete();
-        return redirect()->route('users.index') ;
+            return redirect()->route('users.index')->with('success', 'L\'Utilisateur est bien supprimer.');
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error($e);
+
+            return redirect()->back()->with('error', 'Un Problem est survenue: '.$e->getMessage());
+        }
     }
 
+    public function showProfile()
+    {
+        return view('content.profile')->with('user', Auth::user());
+    }
 
+    public function editPassword(Request $request)
+    {
+        try {
+            $request->validate([
+                'password' => 'required | string',
+                'c_password' => 'required | string | same:password',
+            ]);
+            User::where('id', Auth::id())->update('password', bcrypt($request['password']));
+
+            return redirect()->back()->with('success', 'Password bien modifier.');
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error($e);
+
+            return redirect()->back()->with('error', 'Un Problem est survenue: '.$e->getMessage());
+        }
+
+    }
+
+    public function logs(string $id){
+      $this->authorize('logs-salarie');
+      $logs = Log::where('user_id',$id)->get();
+      return view('content.logs')->with('logs',$logs);
+    }
+
+    public function allLogs(){
+      $this->authorize('logs');
+      $logs = Log::whereNotNull('id')->get();
+      return view('content.allLogs')->with('logs',$logs);
+    }
 }

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Badge extends Model
 {
     use HasFactory;
-    protected $fillable = ['reference','taken','type_id'];
+
+    protected $fillable = ['reference', 'taken', 'type_id'];
 
     public function type()
     {
@@ -19,6 +20,7 @@ class Badge extends Model
     {
         return $this->hasMany(Visiteur::class);
     }
+
     public function partenaireVisiteurs()
     {
         return $this->hasMany(PartenaireVisite::class);

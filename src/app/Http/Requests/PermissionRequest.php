@@ -22,7 +22,14 @@ class PermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:permissions',
+            'name' => 'required|string|max:255',
         ];
+    }
+
+    public function messages(){
+      return[
+        'name' => 'le nom est obligatoire',
+        'name.unique' => 'le nom de la permission doit Être unique'
+      ];
     }
 }

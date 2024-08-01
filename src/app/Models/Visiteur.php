@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Visiteur extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom','prenom','cin','entreprise','motif','entrer','sortie','badge_id'];
+
+    protected $fillable = ['nom', 'prenom', 'cin', 'entreprise', 'motif', 'entrer', 'sortie', 'badge_id'];
 
     public function badge()
     {

@@ -3,50 +3,65 @@
     {
       "url": "/",
       "name": "Accueil",
-      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "icon": "menu-icon tf-icons bx bx-home",
       "slug": "home"
     },
     {
-      "url" : "/salaries",
+      "url": "/salaries",
       "name": "Salaries",
-      "icon": "menu-icon tf-icons bx bx-layout",
-      "slug": "salaries-menu"
-
+      "icon": "menu-icon tf-icons bx bx-briefcase",
+      "slug": "salaries"
     },
     {
-      "url" : "/partenaires",
-      "name": "Partenaires",
-      "icon": "menu-icon tf-icons bx bx-layout",
-      "slug": "salaries-menu"
-
-    },
-    {
-      "name": "Visits",
-      "icon": "menu-icon tf-icons bx bx-store",
-      "slug": "Visits-menu",
+      "name": "Evaluations",
+      "icon": "menu-icon tf-icons bx bx-edit",
+      "slug": "evaluation",
       "submenu": [
         {
-          "url": "/visiteurs",
-          "name": "Visiteurs",
-          "slug": "partenaires"
+          "url": "/notes",
+          "name": "Liste Evaluations",
+          "slug": "evaluations"
         },
         {
-          "url": "/partenaireVisits",
-          "name": "Visites des Partenaires",
-          "slug": "partenaireVisits"
+          "url": "/evaluate",
+          "name": "Evaluer",
+          "slug": "evaluate"
         }
       ]
     },
     {
-      "url" : "/addVisit",
+      "url": "/partenaires",
+      "name": "Partenaires",
+      "icon": "menu-icon tf-icons bx bx-group",
+      "slug": "partenaires"
+    },
+    {
+      "name": "Visits",
+      "icon": "menu-icon tf-icons bx bx-calendar",
+      "slug": "visits_menu",
+      "submenu": [
+        {
+          "url": "/visiteurs",
+          "name": "Visiteurs",
+          "slug": "visits"
+        },
+        {
+          "url": "/partenaire-visits",
+          "name": "Visites des Partenaires",
+          "slug": "visit-partenaire"
+        }
+      ]
+    },
+    {
+      "url": "/add-visit",
       "name": "Nouvelle Visit",
-      "icon": "menu-icon tf-icons bx bxl-php",
-      "slug": "visiteurs"
+      "icon": "menu-icon tf-icons bx bx-plus-circle",
+      "slug": "add-visit"
     },
     {
       "name": "Badges",
-      "icon": "menu-icon tf-icons bx bx-layout",
-      "slug": "Badges-menu",
+      "icon": "menu-icon tf-icons bx bx-id-card",
+      "slug": "badges-menu",
       "submenu": [
         {
           "url": "/badges",
@@ -54,16 +69,16 @@
           "slug": "badges"
         },
         {
-          "url": "/affecteBadge",
+          "url": "/affecte-badge",
           "name": "Affecter un Badge",
-          "slug": "affecteBadge"
+          "slug": "affecte-badge"
         }
       ]
     },
     {
       "name": "User Management",
-      "icon": "menu-icon tf-icons bx bx-cog",
-      "slug": "userManagement-menu",
+      "icon": "menu-icon tf-icons bx bx-user",
+      "slug": "user-management",
       "submenu": [
         {
           "url": "/users",
@@ -85,25 +100,51 @@
     {
       "name": "Paramétrages",
       "icon": "menu-icon tf-icons bx bx-cog",
-      "slug": "salaries-menu",
+      "slug": "parametrages",
       "submenu": [
         {
-          "url": "/badgeTypes",
+          "url": "/badge-types",
           "name": "Type de Badges",
-          "slug": "badgeTypes"
+          "slug": "type-badges"
         },
         {
-          "url": "/contratTypes",
+          "url": "/contrat-types",
           "name": "Type de Contrats",
-          "slug": "contratTypes"
+          "slug": "type-contrats"
+        },
+        {
+          "url": "/documents",
+          "name": "Type des Documents",
+          "slug": "type-documents"
+        },
+        {
+          "url": "/note-categories",
+          "name": "Categories des Notes",
+          "slug": "categorie-notes"
+        },
+        {
+          "url": "/note-sub-categories",
+          "name": "Sous Categorie des Notes",
+          "slug": "sous-categorie-notes"
+        },
+        {
+          "url": "/services",
+          "name": "Services",
+          "slug": "services"
         }
       ]
     },
     {
-      "url" : "/export",
+      "url": "/export",
       "name": "Rapports",
-      "icon": "menu-icon tf-icons bx bxs-file-export",
-      "slug": "export"
+      "icon": "menu-icon tf-icons bx bx-bar-chart-alt",
+      "slug": "rapports"
+    },
+    {
+      "url": "/logs",
+      "name": "Logs",
+      "icon": "menu-icon tf-icons bx bx-history",
+      "slug": "logs"
     }
   ]
 }

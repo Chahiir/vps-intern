@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('motif');
             $table->dateTime('entrer');
             $table->dateTime('sortie')->nullable();
-            $table->unsignedBigInteger('badge_id');
+            $table->unsignedBigInteger('badge_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('badge_id')->references('id')->on('badges');
+            $table->foreign('badge_id')->references('id')->on('badges')->onDelete('set null')->onUpdate('cascade');
 
         });
     }

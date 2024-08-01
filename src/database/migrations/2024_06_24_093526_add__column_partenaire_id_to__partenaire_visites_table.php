@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('partenaire_visites', function (Blueprint $table) {
           $table->unsignedBigInteger('partenaire_id');
-          $table->foreign('partenaire_id')->references('id')->on('partenaires');
+          $table->foreign('partenaire_id')->references('id')->on('partenaires')->onDelete('cascade');
 
         });
     }

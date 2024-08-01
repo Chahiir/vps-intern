@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('type_id');
             $table->timestamps();
 
-            $table->foreign('type_id')->references('id')->on('badge_types');
+            $table->foreign('type_id')->references('id')->on('badge_types')->onDelete('cascade')->onUpdate('cascade');
 
         });
 

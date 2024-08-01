@@ -18,10 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'salarier_id',
         'email',
         'password',
-        'role_id'
+        'role_id',
     ];
 
     /**
@@ -44,8 +44,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
-
     public function role()
     {
         return $this->belongsTo(Role::class);
@@ -54,5 +52,24 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return $this->roles()->where('name', $role)->exists();
+    }
+
+    public function salarier()
+    {
+        return $this->belongsTo(Salarier::class, 'salarier_id');
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
+
+    public function hasPermission($permission)
+    {
+      dd($permission);
+        return $this->roles()->with('permissions')->get()
+            ->pluck('permissions')
+            ->flatten()
+            ->contains('name', $permission);
     }
 }

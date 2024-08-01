@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\Badge;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class BadgesExport implements FromCollection
+class BadgesExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection

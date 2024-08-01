@@ -25,4 +25,10 @@ class ContratTypesRequest extends FormRequest
             'name' => 'string | max:255 | required'
         ];
     }
+
+    public function messages(){
+      return [
+        'name' => 'Le nom du type est obligatoire.'
+      ];
+    }
 }
