@@ -3,7 +3,7 @@
 @section('title', 'Logs')
 
 @section('content')
-<div class="card">
+<div class="card ">
 
 <div class="card-header d-flex align-items-center justify-content-between  ">
   <h3 class="mb-8 m-4 position-absolute top-0 start-50 translate-middle">Liste des LOGS</h3>

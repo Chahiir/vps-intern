@@ -66,8 +66,7 @@ class User extends Authenticatable
 
     public function hasPermission($permission)
     {
-      dd($permission);
-        return $this->roles()->with('permissions')->get()
+          return $this->roles()->with('permissions')->get()
             ->pluck('permissions')
             ->flatten()
             ->contains('name', $permission);

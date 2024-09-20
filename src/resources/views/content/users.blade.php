@@ -12,13 +12,13 @@
     @include('content.modals.addUser', ['roles' => $roles])
     @endcan
     <br><br><br>
-    <div class="card">
+    <div class="card p-2">
         <div class="table-responsive text-nowrap" id="print-section">
             <img src="{{ asset('assets/img/print/Picture1.jpg') }}" style="display:none;margin:auto;" class="print-header"><br>
             <div class="card-header d-flex align-items-center justify-content-between position-relative ">
-                <h3 class="mb-8 position-absolute top-100 start-50 translate-middle">Liste des Salariers</h3>
+                <h3 class="mb-8 position-absolute top-100 start-50 translate-middle">Liste des Utilisateurs</h3>
             </div>
-            <table class="table table-striped" id="data-table">
+            <table class="table table-striped " id="data-table">
                 <thead>
                     <tr>
                         <th>Nom Complet</th>
@@ -38,7 +38,8 @@
                             <td>{{ \App\Helpers\SalarierHelper::toMaj($user->salarier->nom) }} &nbsp; {{ \App\Helpers\SalarierHelper::firstMaj($user->salarier->prenom) }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <span class="badge rouded-pill bg-label-info">{{ \App\Helpers\SalarierHelper::toMaj($user->role->name) ?? 'No Role' }}</span>
+
+                                <span class="badge rouded-pill bg-label-info">{{ $user->role->name ?? 'No Role' }}</span>
                             </td>
                             <td>{{ $user->last_loggin ?? 'Jamais' }}</td>
                             <td class="action">
@@ -70,5 +71,5 @@
         </div>
     </div>
     </div>
-
+    
 @endsection

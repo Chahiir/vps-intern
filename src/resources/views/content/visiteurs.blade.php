@@ -27,7 +27,7 @@
     </div>
     <br><br>
     <br>
-    <div class="card">
+    <div class="p-2 card">
 
         <div class="table-responsive text-nowrap" id="print-section">
 

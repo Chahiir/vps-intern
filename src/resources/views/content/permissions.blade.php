@@ -18,7 +18,7 @@
     <br>
     <br>
     <br>
-    <div class="card">
+    <div class="p-2 card">
         <div class="table-responsive text-nowrap" id="print-section">
             <br>
             <div class="card-header d-flex align-items-center justify-content-between position-relative ">

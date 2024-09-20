@@ -70,7 +70,7 @@ class SalarierController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.index')->with('success', 'l\'Utilisateur est bien modifier.');
+        return redirect()->route('users')->with('success', 'l\'Utilisateur est bien modifier.');
       } catch (\Exception $e) {
         \Illuminate\Support\Facades\Log::error($e);
 
@@ -176,7 +176,7 @@ class SalarierController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'le Salarier est bien ajouter.');
+        return redirect('/salaries')->with('success', 'le Salarier est bien ajouter.');
     } catch (\Exception $e) {
         \Illuminate\Support\Facades\Log::error($e);
 

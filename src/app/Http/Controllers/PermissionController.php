@@ -52,7 +52,7 @@ class PermissionController extends Controller
       try{
         Permission::where('id', $id)->delete();
 
-        return redirect()->route('permissions.index')->with('success','La Permission est bien supprimer');
+        return redirect()->route('permissions')->with('success','La Permission est bien supprimer');
       } catch (\Exception $e) {
         \Illuminate\Support\Facades\Log::error($e);
 

@@ -16,12 +16,15 @@
 
   <ul class="menu-inner py-1">
     @foreach ($menuData[0]->menu as $menu)
+    @php
+    Log::info(json_encode($menu));
+    @endphp
       @if (isset($menu->menuHeader))
         <li class="menu-header small text-uppercase">
           <span class="menu-header-text">{{ __($menu->menuHeader) }}</span>
         </li>
       @else
-        @if (App\Helpers\PermissionHelper::userHasPermission($menu->slug))
+        @can("$menu->slug")
           @php
             $activeClass = null;
             $currentRouteName = Route::currentRouteName();
@@ -30,9 +33,9 @@
                 $activeClass = 'active';
             }
             elseif (isset($menu->submenu)) {
-                if (gettype($menu->slug) === 'array') {
-                    foreach($menu->slug as $slug){
-                        if (str_contains($currentRouteName,$slug) and strpos($currentRouteName,$slug) === 0) {
+                if (gettype($menu->submenu) === 'array') {
+                    foreach($menu->submenu as $submenu){
+                        if (str_contains($currentRouteName,$submenu->slug) and strpos($currentRouteName,$submenu->slug) === 0) {
                             $activeClass = 'active open';
                         }
                     }
@@ -60,7 +63,7 @@
               @include('layouts.sections.menu.submenu',['menu' => $menu->submenu])
             @endisset
           </li>
-        @endif
+        @endcan
       @endif
     @endforeach
   </ul>

@@ -113,7 +113,7 @@
                       @error('password')
                           <span class="text-danger">{{ $message }}</span>
                       @enderror
-                      <div class="form-group">
+                      <div class="form-group mt-4">
                           <label for="permissions">Confirmation Password</label>
                           <input required placeholder="********" type="password" name="c_password" id="c_password" class="form-control" data-parsley-equalto="#password">
                       </div>

@@ -1,7 +1,7 @@
 <ul class="menu-sub">
   @if (isset($menu))
     @foreach ($menu as $submenu)
-      @if (App\Helpers\PermissionHelper::userHasPermission($submenu->slug))
+      @can("$submenu->slug")
         @php
           $activeClass = null;
           $active = 'active open';
@@ -37,12 +37,11 @@
             @endisset
           </a>
 
-          {{-- submenu --}}
           @if (isset($submenu->submenu))
             @include('layouts.sections.menu.submenu',['menu' => $submenu->submenu])
           @endif
         </li>
-      @endif
+      @endcan
     @endforeach
   @endif
 </ul>

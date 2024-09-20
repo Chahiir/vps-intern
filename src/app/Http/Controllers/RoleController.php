@@ -32,7 +32,7 @@ class RoleController extends Controller
 
         $role->permissions()->attach($validated['permissions']);
 
-        return redirect()->route('roles.index')->with('success','Le Role est bien ajouter.');
+        return redirect()->route('roles')->with('success','Le Role est bien ajouter.');
       } catch (\Exception $e) {
         \Illuminate\Support\Facades\Log::error($e);
 
@@ -50,7 +50,7 @@ class RoleController extends Controller
         $role->update(['name' => $validated['name']]);
         $role->permissions()->sync($validated['permissions']);
 
-        return redirect()->route('roles.index')->with('success','Le Role est bien modifier.');
+        return redirect()->route('roles')->with('success','Le Role est bien modifier.');
       } catch (\Exception $e) {
         \Illuminate\Support\Facades\Log::error($e);
 
@@ -65,7 +65,7 @@ class RoleController extends Controller
         PermissionRole::where('role_id', $id)->delete();
         Role::find($id)->delete();
 
-        return redirect()->route('roles.index')->with('success','Le Role est bien supprimer.');
+        return redirect()->route('roles')->with('success','Le Role est bien supprimer.');
       } catch (\Exception $e) {
         \Illuminate\Support\Facades\Log::error($e);
 

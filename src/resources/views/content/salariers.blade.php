@@ -29,7 +29,7 @@
     <br>
     <br><br>
     <br>
-    <div class="card">
+    <div class="p-2 card">
         <div class="table-responsive text-nowrap" id="print-section">
             <img src="{{ asset('assets/img/print/Picture1.jpg') }}" style="display:none;margin:auto;"
                 class="print-header"><br>

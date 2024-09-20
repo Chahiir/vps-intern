@@ -57,7 +57,7 @@ class UserController extends Controller
 
     //     $user->save();
 
-    //     return redirect()->route('users.index')->with('success', 'User Updated successfully.');
+    //     return redirect()->route('users')->with('success', 'User Updated successfully.');
     // }
 
     public function destroy($id)
@@ -66,7 +66,7 @@ class UserController extends Controller
         try {
             User::find($id)->delete();
 
-            return redirect()->route('users.index')->with('success', 'L\'Utilisateur est bien supprimer.');
+            return redirect()->route('users')->with('success', 'L\'Utilisateur est bien supprimer.');
         } catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error($e);
 

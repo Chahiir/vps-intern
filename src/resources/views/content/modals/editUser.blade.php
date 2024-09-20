@@ -19,8 +19,8 @@
                                 @CSRF
                                 @method('POST')
                                 <div class="mb-3">
-                                  <label for="exampleFormControlSelect1" class="form-label">Salariers</label>
-                                  <select class="select2 form-select" disabled name="salarier_id" id="exampleFormControlSelect1"
+                                  <label for="exampleFormControlSelect1" class="form-label">Salariers</label><br>
+                                  <select class="select2 form-select" style="width:80% !important" disabled name="salarier_id"
                                       aria-label="Default select example">
                                           <option value="{{ $user->salarier->id }}"  selected disabled >{{ $user->salarier->nom }} &nbsp;
                                               {{ $user->salarier->prenom }}</option>
@@ -34,7 +34,7 @@
                                             <span id="basic-icon-default-company2" class="input-group-text"><i
                                                     class="bx bxl-gmail"></i></span>
                                             <input type="text" name="email" value="{{ $user->email }}"
-                                                id="basic-icon-default-id" class="form-control" placeholder=""
+                                                 class="form-control" placeholder=""
                                                 aria-describedby="basic-icon-default-id" data-parsley-type="email" data-parsley-errors-container="#emailError" required/>
                                         </div>
                                         <span id="emailError" class="text-danger"  style="margin-left:23%"></span>
@@ -50,7 +50,7 @@
                                             <span id="basic-icon-default-phone2" class="input-group-text"><i
                                                     class="bx bx-key"></i></span>
                                             <input type="text" name="password" value=""
-                                                id="basic-icon-default-adresse" class="form-control col-sm-10"
+                                                  class="form-control col-sm-10"
                                                 placeholder="" aria-describedby="basic-icon-default-adresse" />
                                         </div>
                                         @error('password')
@@ -63,10 +63,10 @@
                                         Password</label>
                                     <div class="col-sm-10">
                                         <div class="input-group input-group-merge">
-                                            <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                            <span id="basic-ic" class="input-group-text"><i
                                                     class="bx bx-key"></i></span>
                                             <input type="text" name="c_password" value=""
-                                                id="basic-icon-default-adresse" class="form-control col-sm-10"
+                                                class="form-control col-sm-10"
                                                 placeholder="" aria-describedby="basic-icon-default-adresse" />
                                         </div>
                                         @error('c_password')
@@ -78,7 +78,7 @@
                                 <div class="form-group row mb-3">
                                     <label for="role" class="col-sm-2 form-label">Role</label>
                                     <div class="col-sm-10">
-                                        <select name="role_id" id=""
+                                        <select name="role_id"
                                             class="select2 form-control form-select col-sm-10" required>
                                             @foreach ($roles as $role)
                                                 <option value="{{ $role->id }}"

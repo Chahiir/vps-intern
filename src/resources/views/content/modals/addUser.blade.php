@@ -19,7 +19,7 @@
                                 @method('POST')
                                 <div class="mb-3">
                                   <label for="exampleFormControlSelect1" class="form-label">Salariers</label>
-                                  <select class="select2 form-select" name="salarier_id" id="exampleFormControlSelect1"
+                                  <select class="select2 form-select" name="salarier_id" 
                                       aria-label="Default select example" required>
                                       <option selected disabled>Salariers</option>
                                       @foreach ($salariers as $salarier)
@@ -36,7 +36,7 @@
                                             <span id="basic-icon-default-company2" class="input-group-text"><i
                                                     class="bx bxl-gmail"></i></span>
                                             <input type="text" name="email" value=""
-                                                id="basic-icon-default-id" class="form-control" placeholder=""
+                                               class="form-control" placeholder=""
                                                 aria-describedby="basic-icon-default-id" data-parsley-type="email" data-parsley-errors-container="#emailError" required/>
                                         </div>
                                         <span id="emailError" class="text-danger"  style="margin-left:23%"></span>
@@ -70,7 +70,7 @@
                                             <span id="basic-icon-default-phone2" class="input-group-text"><i
                                                     class="bx bx-key"></i></span>
                                             <input type="password" name="c_password" value=""
-                                                id="basic-icon-default-adresse" class="form-control col-sm-10"
+                                                class="form-control col-sm-10"
                                                 placeholder="" aria-describedby="basic-icon-default-adresse" required data-parsley-errors-container="#cpassError" data-parsley-length="[8, 20]" data-parsley-equalto="#password"/>
                                         </div>
                                         <span id="cpassError" class="text-danger"  style="margin-left:23%"></span>

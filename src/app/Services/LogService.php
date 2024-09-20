@@ -17,8 +17,6 @@ class LogService
             'created_at' => now(),
         ];
 
-        Log::info('LogService: dispatching SaveLogJob', $logData);
-
         dispatch(new SaveLogJob($logData));
     }
 }

@@ -11,7 +11,7 @@
     </button>
     @endcan
     <br><br><br>
-    <div class="card">
+    <div class="p-2 card">
 
         <div class="card-header d-flex align-items-center justify-content-between position-relative ">
             <h3 class="mb-8 position-absolute top-100 start-50 translate-middle">Liste des sous-categories de note</h3>

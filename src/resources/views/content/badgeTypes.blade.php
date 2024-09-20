@@ -13,7 +13,7 @@
     </button>
     @endcan
     <br><br><br>
-    <div class="card">
+    <div class="card p-2">
 
         <div class="card-header d-flex align-items-center justify-content-between position-relative ">
             <h3 class="mb-8 position-absolute top-100 start-50 translate-middle">Liste des types de badges</h3>

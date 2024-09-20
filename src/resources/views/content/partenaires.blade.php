@@ -33,7 +33,7 @@
     <br>
     <br><br>
     <br>
-    <div class="card">
+    <div class="p-2 card">
 
 
 

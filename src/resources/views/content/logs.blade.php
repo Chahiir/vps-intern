@@ -8,7 +8,7 @@ aria-expanded="false" aria-controls="data-table_filter">
 <i class='bx bx-search-alt-2'></i>
 </button>
 <br><br>
-<div class="card"><div class="table-responsive text-nowrap">
+<div class="card p-2 "><div class="table-responsive text-nowrap">
 
     <br>
   <table class="table table-striped" id="data-table">
