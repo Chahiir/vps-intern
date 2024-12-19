@@ -1,0 +1,210 @@
+@media print {
+  @page {
+    size: landscape;
+  }
+
+  .dataTables_length {
+    display: none;
+    /* Hide the length menu */
+  }
+
+  #data-table_filter,
+  #data-table_paginate {
+    display: none;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #print-section,
+  #print-section * {
+    visibility: visible;
+    width: 100%;
+  }
+
+  #print-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .card-header {
+    font-size: 26px;
+    color: black;
+    text-align: center;
+  }
+
+  .print-header {
+    display: block !important;
+  }
+
+  .action {
+    display: none;
+  }
+  table {
+    table-layout: auto; /* Allow the table to adjust column widths automatically */
+    width: 100%; /* Ensure the table takes up the full width of the page */
+  }
+  th,
+  td {
+    padding: 8px 10px; /* Adjust padding to minimize unused space */
+    word-wrap: break-word; /* Ensure long text wraps within cells */
+  }
+}
+
+.print-header {
+  display: none;
+}
+
+/* General Select2 Styling */
+.select2 {
+  padding: 0.4375rem 1.875rem 0.4375rem 0.875rem;
+  border: var(--bs-border-width) solid #d9dee3;
+  border-radius: var(--bs-border-radius);
+}
+
+.select2-selection--single {
+  border: none !important;
+}
+
+.select2-selection--multiple {
+  border: none !important;
+}
+
+/* Container to handle width */
+.select2-container {
+  max-width: 100%;
+  width: 100% !important;
+}
+
+/* Styling for selection choices */
+.select2-selection__choice {
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Custom class to handle max height and overflow */
+.select2-container--custom .select2-selection--multiple {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* Ensure modal's z-index and visibility */
+.modal {
+  z-index: 1050;
+}
+
+.modal-body {
+  overflow: visible;
+}
+
+CSS:
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+
+.step {
+    text-align: center;
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-line {
+    width: calc(75% + 20px);
+    height: 2px;
+    background-color: #ddd;
+    position: absolute;
+    top: 20px; /* Center the line vertically relative to the circle */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    background-color: #ddd;
+    color: #fff;
+    font-size: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.step.active .step-number {
+    background-color: #696cff;
+}
+
+.step-title {
+    font-size: 14px;
+    width: 150px;
+    margin: 0 auto;
+    white-space: normal;
+    word-wrap: break-word;
+    color: #DDDDDD;
+}
+
+.step.active .step-title {
+    color: #696cff;
+}
+
+.step-pane {
+    display: none;
+}
+
+.step-pane.active {
+    display: block;
+}
+
+.step-trigger:hover .step-number {
+    background-color: #9394f8;
+}
+
+.step-trigger:hover .step-title {
+    color: #9394f8;
+}
+
+/* Custom fieldset and legend styling */
+fieldset {
+  border: 1px solid gray !important; /* Add a border to the fieldset */
+  padding: 0.5em 1em; /* Add some padding for spacing */
+  margin-bottom: 1em; /* Add margin for spacing between fieldsets */
+}
+
+legend {
+  padding: 0 10px; /* Add padding to the legend text */
+  font-weight: bold; /* Bold text for legend */
+}
+
+fieldset legend {
+  margin-left: -10px; /* Adjust the position of the legend */
+  padding: 0 10px; /* Additional padding */
+  color: #333; /* Text color */
+  font-size: 1.1em; /* Font size */
+  background: white; /* Background color */
+  border: none; /* Remove any border */
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
